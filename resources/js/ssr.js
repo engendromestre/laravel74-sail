@@ -22,7 +22,7 @@ createServer((page) =>
                                 ...page.props.ziggy,
                                 location: new URL(page.props.ziggy.url),
                             });
-                        },
+                        }
                     },
                 });
         },

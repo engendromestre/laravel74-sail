@@ -3,9 +3,16 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
-import { translations } from "./Mixins/Translations";
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+const translate = (text) => {
+    let t = this.lang[text];
+
+    if (t !== undefined)
+        return t;
+    else
+        return text
+}
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -14,8 +21,17 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .mixin({
-                translations,
-                methods: { route } 
+                methods: {
+                    route,
+                    translate: function(text) {
+                        let t = this.lang[text];
+            
+                        if (t !== undefined) 
+                            return t;
+                        else
+                            return text
+                    }
+                }
             })
             .mount(el);
     },
