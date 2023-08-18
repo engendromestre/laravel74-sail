@@ -1,0 +1,9 @@
+ftp.faculdadegalileu.com.br
+login: faculdadegalileu04
+senha: w54f84wssF
+
+Banco:
+http://mysql.faculdadegalileu.com.br/
+login: faculdadegalil09
+database: faculdadegalil09
+senha: e84fggfwhjHU9
