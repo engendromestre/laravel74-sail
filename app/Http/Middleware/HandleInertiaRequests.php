@@ -2,9 +2,14 @@
 
 namespace App\Http\Middleware;
 
+
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
+
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Arr;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -38,9 +43,33 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'ziggy' => function () {
-                return (new Ziggy)->toArray();
+            'ziggy' => function () use ($request) {
+                return array_merge((new Ziggy)->toArray(), [
+                    'location' => $request->url(),
+                ]);
             },
+            'lang' => function() {
+                $locale = App::getLocale();
+                $phpTransations = [];
+                $jsonTransations = [];
+                if(File::exists(base_path("lang/{$locale}"))) {
+                    $phpTransations = collect(File::allFiles(base_path("lang/{$locale}")))
+                        ->filter(function($file) {
+                            return $file->getExtension() === "php";
+                    })->flatMap(function($file) {
+                        return Arr::dot(File::getRequire($file->getRealPath()));
+                    })->toArray();
+                }
+                if(File::exists(base_path("lang/{$locale}.json"))) {
+                    $jsonTransations = json_decode(File::get(base_path("lang/{$locale}.json")),true);
+                }
+                $translation = array_merge($phpTransations,$jsonTransations);
+                return $translation;
+            },
+            'flash' => [
+                'message' => session('message')
+                // 'message' => fn () => $request->session()->get('message')
+            ]
         ]);
     }
 }

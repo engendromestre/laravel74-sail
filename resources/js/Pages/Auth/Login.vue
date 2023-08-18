@@ -10,7 +10,10 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 defineProps({
     canResetPassword: Boolean,
     status: String,
+    lang: Object
 });
+
+console.log(props.lang)
 
 const form = useForm({
     email: '',
@@ -27,7 +30,7 @@ const submit = () => {
 
 <template>
     <BreezeGuestLayout>
-        <Head title="Log in" />
+        <Head :title="translate('Log in')" />
 
         <BreezeValidationErrors class="mb-4" />
 
