@@ -27,5 +27,10 @@
         "vue": "^3.2.31",
         "vue-loader": "^17.0.0",
         "webpack-node-externals": "^3.0.0"
+    },
+    "dependencies": {
+        "@headlessui/vue": "^1.7.16",
+        "@heroicons/vue": "^2.0.18",
+        "vuex": "^4.1.0"
     }
 }

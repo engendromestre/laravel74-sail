@@ -1,10 +1,10 @@
 <script setup>
-import BreezeButton from '@/Components/Button.vue';
-import BreezeCheckbox from '@/Components/Checkbox.vue';
-import BreezeGuestLayout from '@/Layouts/Guest.vue';
-import BreezeInput from '@/Components/Input.vue';
-import BreezeLabel from '@/Components/Label.vue';
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
+import Button from '@/Components/DefaultButton.vue';
+import Checkbox from '@/Components/Checkbox.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+import Input from '@/Components/TextInput.vue';
+import Label from '@/Components/InputLabel.vue';
+import ValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 const props = defineProps({
@@ -27,11 +27,11 @@ const submit = () => {
 </script>
 
 <template>
-    <BreezeGuestLayout>
+    <GuestLayout>
 
         <Head :title="translate('Log in')" />
 
-        <BreezeValidationErrors class="mb-4" />
+        <ValidationErrors class="mb-4" />
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
@@ -39,20 +39,20 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <BreezeLabel for="email" :value="translate('E-mail')" />
-                <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus
+                <Label for="email" :value="translate('E-mail')" />
+                <Input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus
                     autocomplete="username" />
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="password" :value="translate('Password')" />
-                <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required
+                <Label for="password" :value="translate('Password')" />
+                <Input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required
                     autocomplete="current-password" />
             </div>
 
             <div class="block mt-4">
                 <label class="flex items-center">
-                    <BreezeCheckbox name="remember" v-model:checked="form.remember" />
+                    <Checkbox name="remember" v-model:checked="form.remember" />
                     <span class="ml-2 text-sm text-gray-600">Remember me</span>
                 </label>
             </div>
@@ -63,10 +63,10 @@ const submit = () => {
                 Forgot your password?
                 </Link>
 
-                <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <Button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
-                </BreezeButton>
+                </Button>
             </div>
         </form>
-    </BreezeGuestLayout>
+    </GuestLayout>
 </template>
