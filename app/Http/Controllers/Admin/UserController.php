@@ -8,6 +8,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -32,12 +33,12 @@ class UserController extends Controller
     {
         $users = (new User)->newQuery();
         $user = Auth::user();
-        if($user['name'] =='Super Admin') {
+        if ($user['name'] == 'Super Admin') {
             $users->latest();
         } else {
-            $users->where('name','!=','Super Admin')->latest();
+            $users->where('name', '!=', 'Super Admin')->latest();
         }
-        
+
         $users = $users->when(
             $request->q,
             function ($query, $q) {
@@ -101,16 +102,16 @@ class UserController extends Controller
         return redirect()->route('user.index', ['page' => $request->input('page')])->with('message', 'Updated Successfully');
     }
 
-     /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\User $user
      */
-    public function destroy(Request $request,User $user)
+    public function destroy(Request $request, User $user)
     {
         $user->delete();
-        return redirect()->route('user.index',['page' => $request->input('page')])->with('message', 'Deleted Successfully');
+        return redirect()->route('user.index', ['page' => $request->input('page')])->with('message', 'Deleted Successfully');
     }
 
 

@@ -192,7 +192,8 @@ return [
         'course' => 'curso',
         'file' => 'arquivo',
         'publicationYear' => 'ano de publicação',
-        'author' => 'autor'
+        'author' => 'autor',
+        'role' => 'papel'
     ],
 
 ];
