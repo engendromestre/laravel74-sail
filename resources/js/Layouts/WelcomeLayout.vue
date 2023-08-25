@@ -2,12 +2,13 @@
 import { Link } from '@inertiajs/inertia-vue3';
 import { Disclosure, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
 import { AcademicCapIcon } from "@heroicons/vue/24/outline";
+import LightDarkButton from "@/Components/LightDarkButton.vue";
 
 const props = defineProps({
     lang: Object,
     canLogin: Boolean
 });
-
+LightDarkButton.vue
 </script>
 <template>
     <div class="min-h-screen dark:bg-gray-900">
@@ -30,8 +31,10 @@ const props = defineProps({
                         class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         <!-- Profile dropdown -->
                         <Menu as="div" class="relative ml-3">
-                            <div>
-                                <MenuButton class="flex rounded-full ">
+                            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                                <!-- LightDarkButton here -->
+                                <LightDarkButton />
+                                <MenuButton class="flex rounded-full pl-1.5">
                                     <span class="sr-only">Open user menu</span>
                                     <AcademicCapIcon class="h-6 w-6 rounded-full dark:text-white" aria-hidden="true" />
                                 </MenuButton>
