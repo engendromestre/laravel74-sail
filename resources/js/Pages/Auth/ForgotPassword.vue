@@ -1,5 +1,5 @@
 <script setup>
-import Button from '@/Components/Button.vue';
+import Button from '@/Components/DefaultButton.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import Input from '@/Components/TextInput.vue';
 import Label from '@/Components/InputLabel.vue';

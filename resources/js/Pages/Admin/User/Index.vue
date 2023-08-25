@@ -49,8 +49,6 @@ const props = defineProps({
     },
 });
 
-console.log(props.can);
-
 const rolesId = Object.values(props.roles).map((r) => {
     return r.id
 });

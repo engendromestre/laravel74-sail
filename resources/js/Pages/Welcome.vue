@@ -1,11 +1,11 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { Head, useForm } from '@inertiajs/inertia-vue3';
+import { ref, onMounted } from "vue";
+import { Head, useForm } from "@inertiajs/inertia-vue3";
 import { DialogTitle } from "@headlessui/vue";
 import CrudLayout from "@/Layouts/CrudLayout.vue";
 import ReadList from "@/Components/ReadList.vue";
-import Checkbox from '@/Components/Checkbox.vue';
-import InputLabel from '@/Components/InputLabel.vue';
+import Checkbox from "@/Components/Checkbox.vue";
+import InputLabel from "@/Components/InputLabel.vue";
 import WelcomeLayout from "@/Layouts/WelcomeLayout.vue";
 import ResultLayout from "@/Layouts/WelcomeResultLayout.vue";
 import Modal from "@/Components/Modal.vue";
@@ -23,54 +23,62 @@ const props = defineProps({
     data: {
         type: Object,
         default: () => ({}),
-    }
-
+    },
 });
 
 let form = useForm({
-    'canLogin': props.canLogin,
-    'courses': props.courses,
-    'collections': props.collections,
-    'lang': props.lang,
-    'fields': props.fields,
-    'q': '',
-    'chkQuery': [],
-    'selCourses': '',
-    'selCollections': '',
-    'selPublicationYear': ''
+    canLogin: props.canLogin,
+    courses: props.courses,
+    collections: props.collections,
+    lang: props.lang,
+    fields: props.fields,
+    q: "",
+    chkQuery: [],
+    selCourses: "",
+    selCollections: "",
+    selPublicationYear: "",
 });
 
-const emit = defineEmits(['update:data']);
+const emit = defineEmits(["update:data"]);
 
 const submit = () => {
-    form.post(route('welcome'), {
+    form.post(route("welcome"), {
         onSuccess: (res) => {
             emit("update:data", res.props.data);
-        }
+        },
     });
 };
 
 const reset = () => {
     window.location.reload();
-}
+};
 
 const q = ref(null);
 const clearInputQ = () => {
     form.q = "";
     q.value.value = "";
     q.value.focus();
-}
+};
 
 const optionsQuery = [
-    { id: 'collections', label: 'Collections', checked: false, disabled: false },
-    { id: 'courses', label: 'Courses', checked: false, disabled: false },
-    { id: 'publicationYear', label: 'Publication Year', checked: false, disabled: false }
+    {
+        id: "collections",
+        label: "Collections",
+        checked: false,
+        disabled: false,
+    },
+    { id: "courses", label: "Courses", checked: false, disabled: false },
+    {
+        id: "publicationYear",
+        label: "Publication Year",
+        checked: false,
+        disabled: false,
+    },
 ];
 
 onMounted(() => {
     optionsQuery.map((oq) => {
-        if (oq.checked)
-            form.chkQuery.push(oq.id)
+        if (oq.checked) form.chkQuery.push(oq.id);
     });
 });
 
@@ -79,16 +87,22 @@ const optCheckedShowHide = () => {
     const allOptions = optionsQuery.map((oq) => oq.id);
 
     allOptions.forEach((chk) => {
-        if (document.getElementById("opt" + chk[0].toUpperCase() + chk.slice(1))) {
+        if (
+            document.getElementById("opt" + chk[0].toUpperCase() + chk.slice(1))
+        ) {
             if (optionsChecked.includes(chk)) {
-                document.getElementById("opt" + chk[0].toUpperCase() + chk.slice(1)).classList.remove('hide');
+                document
+                    .getElementById("opt" + chk[0].toUpperCase() + chk.slice(1))
+                    .classList.remove("hide");
             } else {
-                document.getElementById("opt" + chk[0].toUpperCase() + chk.slice(1)).classList.add('hide');
-                form['sel' + chk[0].toUpperCase() + chk.slice(1)] = '';
+                document
+                    .getElementById("opt" + chk[0].toUpperCase() + chk.slice(1))
+                    .classList.add("hide");
+                form["sel" + chk[0].toUpperCase() + chk.slice(1)] = "";
             }
         }
     });
-}
+};
 const lastYear = ref(new Date().getFullYear());
 </script>
 
@@ -97,30 +111,97 @@ const lastYear = ref(new Date().getFullYear());
     <WelcomeLayout :lang="lang" :canLogin="canLogin">
         <div class="py-12 sm:py-8">
             <div class="mx-auto max-w-7xl px-4 mb-3">
-                <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
-                    <div class="col-start-1 col-span-6 md:col-start-2 md:col-span-3">
-                        <div class="relative w-full">
-                            <input type="text" id="floating_outlined" v-model="form.q" ref="q"
-                                class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-200 focus:outline-none focus:ring-0 focus:border-blue-200 peer"
-                                placeholder=" " autofocus />
-                            <button type="button" class="flex absolute inset-y-0 right-0 items-center pr-3" title="Limpar"
-                                @click="clearInputQ">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor"
-                                    class="w-6 h-6 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                            <label for="floating_outlined" class="absolute text-xs md:text-lg lg:text-lg text-gray-500 dark:text-gray-400 duration-300 
-                transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 
-                peer-focus:px-2 peer-focus:text-blue-900 dark:peer-focus:text-blue-200 peer-placeholder-shown:scale-100 
-                peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 
-                peer-focus:-translate-y-4 left-1">
-                                Pesquisar por: Autor, Orientador, Título ou Subtítulo
-                            </label>
-                        </div>
+                <!-- INPUT PESQUISA -->
+                <div class="mx-auto max-w-7xl px-4 mb-3">
+                    <div class="relative w-full">
+                        <input type="text" id="floating_outlined" v-model="form.q" ref="q"
+                            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-200 focus:outline-none focus:ring-0 focus:border-blue-200 peer"
+                            placeholder=" " autofocus />
+                        <button type="button" class="flex absolute inset-y-0 right-0 items-center pr-3" title="Limpar"
+                            @click="clearInputQ">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-6 h-6 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <label for="floating_outlined"
+                            class="absolute text-xs md:text-lg lg:text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-900 dark:peer-focus:text-blue-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                            Pesquisar por: Autor, Orientador, Título ou Subtítulo
+                        </label>
                     </div>
-                    <div class="col-span-2">
+                </div>
+
+                <!-- CONSULTA -->
+                <div class="mx-auto max-w-7xl px-4 mb-3">
+                    <fieldset class="border border-gray-500 text-gray-500 dark:text-gray-400 text-sm rounded-lg p-3">
+                        <legend>&nbsp;Mais Opções de Consulta&nbsp;</legend>
+
+                        <div class="grid md:grid-cols-1 md:gap-6">
+                            <div class="flex">
+                                <template v-for="obj in optionsQuery">
+                                    <label class="flex items-center mr-4">
+                                        <Checkbox v-model:checked="form.chkQuery" :disabled="obj.disabled" :value="obj.id"
+                                            @change="optCheckedShowHide()"
+                                            class="w-4 h-4 rounded focus:ring-2 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+                                            :class="obj.disabled
+                                                ? 'text-blue-300 cursor-not-allowed'
+                                                : 'text-blue-600'
+                                                " />
+                                        <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
+                                            translate(obj.label) }}</span>
+                                    </label>
+                                </template>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 md:gap-6 mt-2">
+                            <div id="optCollections" class="relative z-0 w-full mb-4 group hide">
+                                <InputLabel :value="translate('Tipo:')"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400" />
+                                <select
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    v-model="form.selCollections">
+                                    <option value="">Escolha um Item...</option>
+                                    <template v-for="obj in collections">
+                                        <option :value="obj.id">
+                                            {{ obj.name }}
+                                        </option>
+                                    </template>
+                                </select>
+                            </div>
+
+                            <div id="optCourses" class="relative z-0 w-full mb-4 group hide">
+                                <InputLabel :value="translate('Curso:')"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400" />
+                                <select
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    v-model="form.selCourses">
+                                    <option value="">Escolha um Item...</option>
+                                    <template v-for="obj in courses">
+                                        <option :value="obj.id">
+                                            {{ obj.name }}
+                                        </option>
+                                    </template>
+                                </select>
+                            </div>
+
+                            <div id="optPublicationYear" class="relative z-0 w-full mb-4 group hide">
+                                <InputLabel :value="translate('Ano de publicação:')"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400" />
+                                <input type="text" id="ano_publicacao" minlength="4" maxlength="4"
+                                    :placeholder="'Ex:. ' + lastYear"
+                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                    v-model="form.selPublicationYear"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- BOTOES -->
+                <div class="mx-auto max-w-7xl px-4 mb-3 ">
+                    <div class="flex justify-center">
                         <button type="button" @click="submit"
                             class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
                             <span
@@ -136,71 +217,6 @@ const lastYear = ref(new Date().getFullYear());
                             </span>
                         </button>
                     </div>
-                </div>
-
-                <div class="mx-auto max-w-7xl px-4 mb-3">
-                    <fieldset class="border border-gray-500 text-gray-500 dark:text-gray-400 text-sm rounded-lg p-3">
-                        <legend>&nbsp;Mais Opções de Consulta&nbsp;</legend>
-
-                        <div class="grid md:grid-cols-1 md:gap-6">
-                            <div class="flex">
-                                <template v-for="obj in optionsQuery">
-                                    <label class="flex items-center mr-4">
-                                        <Checkbox v-model:checked="form.chkQuery" :disabled="obj.disabled" :value="obj.id"
-                                            @change="optCheckedShowHide()"
-                                            class="w-4 h-4 rounded focus:ring-2 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
-                                            :class="obj.disabled
-                                                ? 'text-blue-300 cursor-not-allowed'
-                                                : 'text-blue-600'" />
-                                        <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
-                                            translate(obj.label)
-                                        }}</span>
-                                    </label>
-                                </template>
-
-                            </div>
-                        </div>
-
-                        <div class="grid md:grid-cols-3 md:gap-6 mt-2">
-
-                            <div id="optCollections" class="relative z-0 w-full mb-4 group hide">
-                                <InputLabel :value="translate('Tipo:')"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400" />
-                                <select
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    v-model="form.selCollections">
-                                    <option value="">Escolha um Item...</option>
-                                    <template v-for="obj in collections">
-                                        <option :value="obj.id">{{ obj.name }}</option>
-                                    </template>
-                                </select>
-                            </div>
-
-                            <div id="optCourses" class="relative z-0 w-full mb-4 group hide">
-                                <InputLabel :value="translate('Curso:')"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400" />
-                                <select
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    v-model="form.selCourses">
-                                    <option value="">Escolha um Item...</option>
-                                    <template v-for="obj in courses">
-                                        <option :value="obj.id">{{ obj.name }}</option>
-                                    </template>
-                                </select>
-                            </div>
-
-                            <div id="optPublicationYear" class="relative z-0 w-full mb-4 group hide">
-                                <InputLabel :value="translate('Ano de publicação:')"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400" />
-                                <input type="text" id="ano_publicacao" minlength="4" maxlength="4"
-                                    :placeholder="'Ex:. ' + lastYear"
-                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                                    v-model="form.selPublicationYear"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                            </div>
-
-                        </div>
-                    </fieldset>
                 </div>
             </div>
 
@@ -242,4 +258,5 @@ const lastYear = ref(new Date().getFullYear());
 <style>
 .hide {
     display: none;
-}</style>
+}
+</style>

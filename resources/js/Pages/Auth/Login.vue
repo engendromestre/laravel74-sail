@@ -31,7 +31,7 @@ const submit = () => {
 
         <Head :title="translate('Log in')" />
 
-        <ValidationErrors class="mb-4" />
+        <ValidationErrors class="mb-4" :lang="lang" />
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}

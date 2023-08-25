@@ -3,14 +3,14 @@ import { computed } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import { Link } from '@inertiajs/inertia-vue3';
-
+import { useStore } from "vuex";
 
 const props = defineProps({
     lang: Object
 });
 
 const breadcrumbs = computed(() => {
-    return [{ label: 'Dashboard', href: 'dashboard' }];
+    return [ { label: 'Dashboard', href: 'dashboard' } ];
 });
 
 const menus = [
@@ -46,6 +46,11 @@ const menus = [
     },
 
 ];
+
+const store = useStore();
+const clearURLQueryString = () => {
+    store.commit('setQuery', '');
+}
 </script>
 <template>
     <Head :title="translate('Dashboard')" />
@@ -59,21 +64,20 @@ const menus = [
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
                 <div class="justify-items-center">
                     <div
                         class="flex flex-col items-center justify-center space-y-6 dark:bg-gray-900 px-4 sm:flex-row sm:space-x-6 sm:space-y-0">
                         <template v-for="menu, idx in menus" :key="idx">
-                            <Link :href="route(menu.href)"
-                                class="h-48 w-full max-w-xs overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-xl">
+                            <Link :href="route(menu.href)" @click="clearURLQueryString"
+                                class="h-48 w-full max-w-xs overflow-hidden rounded-lg 
+                                    bg-white dark:bg-gray-700 dark:text-gray-400 shadow-md dark:shadow-gray-500 duration-300 hover:scale-105 hover:shadow-xl">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="mx-auto mt-8 h-16 w-16">
                                 <path stroke-linecap="round" stroke-linejoin="round" :d="menu.svg_d" />
                             </svg>
-                            <h1 class="px-1 my-8 mt-2 text-center text-2xl font-bold text-gray-500">
+                            <h1 class="px-1 my-8 mt-2 text-center text-2xl font-bold text-gray-500 dark:text-gray-500">
                                 {{ translate(menu.label) }}
                             </h1>
-
                             </Link>
                         </template>
                     </div>
@@ -83,5 +87,3 @@ const menus = [
         </div>
     </AuthenticatedLayout>
 </template>
-
-  

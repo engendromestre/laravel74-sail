@@ -40,6 +40,7 @@ const props = defineProps({
 });
 
 const store = useStore();
+
 const HideModalState = () => {
     store.commit("hideModal");
     setTimeout(() => {

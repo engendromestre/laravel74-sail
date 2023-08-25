@@ -7,6 +7,7 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 import Breadcrumb from '@/Components/Breadcrumb.vue';
+import LightDarkButton from "@/Components/LightDarkButton.vue";
 import Footer from "@/Components/Footer.vue";
 
 const props = defineProps({
@@ -20,33 +21,37 @@ const showingNavigationDropdown = ref(false);
 <template>
     <div>
         <div class="flex flex-col min-h-screen dark:bg-gray-900">
-            <nav class="bg-white border-b border-gray-100">
+            <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="shrink-0 flex items-center dark:text-gray-400 dark:bg-gray-900">
                                 <Link :href="route('home')">
                                 <ApplicationLogo class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex dark:text-gray-400 dark:bg-gray-900">
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')" class="">
                                     {{ translate('Dashboard') }}
                                 </NavLink>
                             </div>
                         </div>
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
+
+                            <!-- LightDarkButton here -->
+                            <LightDarkButton />
+
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button type="button"
-                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                                class="dark:text-gray-400 dark:bg-gray-700 dark:focus:ring-gray-600 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                                 {{ $page.props.auth.user.name }}
 
                                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +93,8 @@ const showingNavigationDropdown = ref(false);
                 </div>
 
                 <!-- Responsive Navigation Menu -->
-                <div :class="{ 'block': showingNavigationDropdown, 'hidden': !showingNavigationDropdown }" class="sm:hidden">
+                <div :class="{ 'block': showingNavigationDropdown, 'hidden': !showingNavigationDropdown }"
+                    class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             {{ translate('Dashboard') }}
@@ -113,10 +119,10 @@ const showingNavigationDropdown = ref(false);
 
             <!-- Page Heading -->
             <!-- <header class="bg-white shadow" v-if="$slots.header"> -->
-            <header class="bg-white shadow">
+            <header class="bg-white shadow dark:shadow-gray-500 dark:text-gray-400 dark:bg-gray-900">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <!-- <slot name="header" /> -->
-                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-500 leading-tight">
                         <nav class="flex" aria-label="Breadcrumb">
                             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                                 <template v-for="breadcrumb in breadcrumbs" :key="breadcrumb.label">
