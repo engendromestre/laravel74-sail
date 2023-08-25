@@ -24486,7 +24486,6 @@ __webpack_require__.r(__webpack_exports__);
     var submit = function submit() {
       form.post(route('welcome'), {
         onSuccess: function onSuccess(res) {
-          console.log(res.props);
           emit("update:data", res.props.data);
         }
       });
@@ -24537,6 +24536,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     };
+    var lastYear = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(new Date().getFullYear());
     var __returned__ = {
       props: props,
       get form() {
@@ -24552,6 +24552,7 @@ __webpack_require__.r(__webpack_exports__);
       clearInputQ: clearInputQ,
       optionsQuery: optionsQuery,
       optCheckedShowHide: optCheckedShowHide,
+      lastYear: lastYear,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       get Head() {
@@ -28403,7 +28404,7 @@ var _hoisted_3 = {
   "class": "grid grid-cols-1 md:grid-cols-6 gap-4"
 };
 var _hoisted_4 = {
-  "class": "col-start-1 col-span-6 md:col-start-2 md: col-span-3"
+  "class": "col-start-1 col-span-6 md:col-start-2 md:col-span-3"
 };
 var _hoisted_5 = {
   "class": "relative w-full"
@@ -28423,8 +28424,8 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_7 = [_hoisted_6];
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "floating_outlined",
-  "class": "absolute text-md md:text-lg lg:text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-900 peer-focus:dark:text-blue-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-}, " Pesquisa ao Catálogo de S.I.B. Galileu ", -1 /* HOISTED */);
+  "class": "absolute text-xs md:text-lg lg:text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-900 dark:peer-focus:text-blue-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+}, " Pesquisar por: Autor, Orientador, Título ou Subtítulo ", -1 /* HOISTED */);
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
 }, " Pesquisar ", -1 /* HOISTED */);
@@ -28439,7 +28440,7 @@ var _hoisted_13 = {
 var _hoisted_14 = {
   "class": "border border-gray-500 text-gray-500 dark:text-gray-400 text-sm rounded-lg p-3"
 };
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, " Opções de Consulta ", -1 /* HOISTED */);
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, " Mais Opções de Consulta ", -1 /* HOISTED */);
 var _hoisted_16 = {
   "class": "grid md:grid-cols-1 md:gap-6"
 };
@@ -28475,13 +28476,14 @@ var _hoisted_27 = {
   id: "optPublicationYear",
   "class": "relative z-0 w-full mb-4 group hide"
 };
-var _hoisted_28 = {
+var _hoisted_28 = ["placeholder"];
+var _hoisted_29 = {
   "class": "mx-auto max-w-7xl px-4 mb-3"
 };
-var _hoisted_29 = {
+var _hoisted_30 = {
   "class": "sm:flex sm:items-start"
 };
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
@@ -28495,13 +28497,13 @@ var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "stroke-linejoin": "round",
   d: "M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
 })])], -1 /* HOISTED */);
-var _hoisted_31 = {
+var _hoisted_32 = {
   "class": "mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left"
 };
-var _hoisted_32 = {
+var _hoisted_33 = {
   "class": "mt-2"
 };
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mb-9"
 }, null, -1 /* HOISTED */);
 
@@ -28582,12 +28584,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         id: "ano_publicacao",
         minlength: "4",
         maxlength: "4",
+        placeholder: 'Ex:. ' + $setup.lastYear,
         onkeypress: "return event.charCode >= 48 && event.charCode <= 57",
         "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
           return $setup.form.selPublicationYear = $event;
         }),
         "class": "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.selPublicationYear]])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ResultLayout"], {
+      }, null, 8 /* PROPS */, _hoisted_28), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.selPublicationYear]])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ResultLayout"], {
         data: $props.data,
         lang: $props.lang,
         canLogin: $props.canLogin,
@@ -28598,7 +28601,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         reloadPage: false
       }, {
         content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DialogTitle"], {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DialogTitle"], {
             as: "h3",
             "class": "mt-2 px-2 text-lg font-medium leading-6 text-gray-900 dark:text-white"
           }, {
@@ -28606,7 +28609,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Resultados")];
             }),
             _: 1 /* STABLE */
-          })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CrudLayout"], null, {
+          })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CrudLayout"], null, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ReadList"], {
                 fields: $props.fields,
@@ -28618,7 +28621,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
 
         _: 1 /* STABLE */
-      })])]), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Footer"])];
+      })])]), _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Footer"])];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["lang", "canLogin"])], 64 /* STABLE_FRAGMENT */);
@@ -28997,7 +29000,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.hide {\n    display: none;\n}\n", "",{"version":3,"sources":["webpack://./resources/js/Pages/Welcome.vue"],"names":[],"mappings":";AA6OA;IACI,aAAa;AACjB","sourcesContent":["<script setup>\nimport { ref, onMounted } from 'vue';\nimport { Head, useForm } from '@inertiajs/inertia-vue3';\nimport { DialogTitle } from \"@headlessui/vue\";\nimport CrudLayout from \"@/Layouts/CrudLayout.vue\";\nimport ReadList from \"@/Components/ReadList.vue\";\nimport Checkbox from '@/Components/Checkbox.vue';\nimport InputLabel from '@/Components/InputLabel.vue';\nimport WelcomeLayout from \"@/Layouts/WelcomeLayout.vue\";\nimport ResultLayout from \"@/Layouts/WelcomeResultLayout.vue\";\nimport Modal from \"@/Components/Modal.vue\";\nimport Footer from \"@/Components/Footer.vue\";\n\nconst props = defineProps({\n    fields: Object,\n    lang: Object,\n    canLogin: Boolean,\n    canRegister: Boolean,\n    laravelVersion: String,\n    phpVersion: String,\n    courses: Object,\n    collections: Object,\n    data: {\n        type: Object,\n        default: () => ({}),\n    }\n\n});\n\nlet form = useForm({\n    'canLogin': props.canLogin,\n    'courses': props.courses,\n    'collections': props.collections,\n    'lang': props.lang,\n    'fields': props.fields,\n    'q': '',\n    'chkQuery': [],\n    'selCourses': '',\n    'selCollections': '',\n    'selPublicationYear': ''\n});\n\nconst emit = defineEmits(['update:data']);\n\nconst submit = () => {\n    form.post(route('welcome'), {\n        onSuccess: (res) => {\n            console.log(res.props);\n            emit(\"update:data\", res.props.data);\n        }\n    });\n};\n\nconst reset = () => {\n    window.location.reload();\n}\n\nconst q = ref(null);\nconst clearInputQ = () => {\n    form.q = \"\";\n    q.value.value = \"\";\n    q.value.focus();\n}\n\nconst optionsQuery = [\n    { id: 'collections', label: 'Collections', checked: false, disabled: false },\n    { id: 'courses', label: 'Courses', checked: false, disabled: false },\n    { id: 'publicationYear', label: 'Publication Year', checked: false, disabled: false }\n];\n\nonMounted(() => {\n    optionsQuery.map((oq) => {\n        if (oq.checked)\n            form.chkQuery.push(oq.id)\n    });\n});\n\nconst optCheckedShowHide = () => {\n    let optionsChecked = Object.values(form.chkQuery);\n    const allOptions = optionsQuery.map((oq) => oq.id);\n\n    allOptions.forEach((chk) => {\n        if (document.getElementById(\"opt\" + chk[0].toUpperCase() + chk.slice(1))) {\n            if (optionsChecked.includes(chk)) {\n                document.getElementById(\"opt\" + chk[0].toUpperCase() + chk.slice(1)).classList.remove('hide');\n            } else {\n                document.getElementById(\"opt\" + chk[0].toUpperCase() + chk.slice(1)).classList.add('hide');\n                form['sel' + chk[0].toUpperCase() + chk.slice(1)] = '';\n            }\n        }\n    });\n}\n</script>\n<template>\n    <Head title=\"Acervo Galileu\" />\n    <WelcomeLayout :lang=\"lang\" :canLogin=\"canLogin\">\n        <div class=\"py-12 sm:py-8\">\n            <div class=\"mx-auto max-w-7xl px-4 mb-3\">\n                <div class=\"grid grid-cols-1 md:grid-cols-6 gap-4\">\n                    <div class=\"col-start-1 col-span-6 md:col-start-2 md: col-span-3\">\n                        <div class=\"relative w-full\">\n                            <input type=\"text\" id=\"floating_outlined\" v-model=\"form.q\" ref=\"q\"\n                                class=\"block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-200 focus:outline-none focus:ring-0 focus:border-blue-200 peer\"\n                                placeholder=\" \" autofocus />\n                            <button type=\"button\" class=\"flex absolute inset-y-0 right-0 items-center pr-3\" title=\"Limpar\"\n                                @click=\"clearInputQ\">\n                                <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\"\n                                    stroke=\"currentColor\"\n                                    class=\"w-6 h-6 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white\">\n                                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\" />\n                                </svg>\n                            </button>\n                            <label for=\"floating_outlined\"\n                                class=\"absolute text-md md:text-lg lg:text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-900 peer-focus:dark:text-blue-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1\">\n                                Pesquisa ao Catálogo de S.I.B. Galileu\n                            </label>\n                        </div>\n                    </div>\n                    <div class=\"col-span-2\">\n                        <button type=\"button\" @click=\"submit\"\n                            class=\"relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800\">\n                            <span\n                                class=\"relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0\">\n                                Pesquisar\n                            </span>\n                        </button>\n                        <button @click=\"reset\"\n                            class=\"relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400\">\n                            <span\n                                class=\"relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0\">\n                                Limpar\n                            </span>\n                        </button>\n                    </div>\n                </div>\n\n                <div class=\"mx-auto max-w-7xl px-4 mb-3\">\n                    <fieldset class=\"border border-gray-500 text-gray-500 dark:text-gray-400 text-sm rounded-lg p-3\">\n                        <legend>&nbsp;Opções de Consulta&nbsp;</legend>\n\n                        <div class=\"grid md:grid-cols-1 md:gap-6\">\n                            <div class=\"flex\">\n                                <template v-for=\"obj in optionsQuery\">\n                                    <label class=\"flex items-center mr-4\">\n                                        <Checkbox v-model:checked=\"form.chkQuery\" :disabled=\"obj.disabled\" :value=\"obj.id\"\n                                            @change=\"optCheckedShowHide()\"\n                                            class=\"w-4 h-4 rounded focus:ring-2 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600\"\n                                            :class=\"obj.disabled\n                                                ? 'text-blue-300 cursor-not-allowed'\n                                                : 'text-blue-600'\" />\n                                        <span class=\"ml-2 text-sm font-medium text-gray-900 dark:text-gray-300\">{{\n                                            translate(obj.label)\n                                        }}</span>\n                                    </label>\n                                </template>\n\n                            </div>\n                        </div>\n\n                        <div class=\"grid md:grid-cols-3 md:gap-6 mt-2\">\n\n                            <div id=\"optCollections\" class=\"relative z-0 w-full mb-4 group hide\">\n                                <InputLabel :value=\"translate('Tipo:')\"\n                                    class=\"block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400\" />\n                                <select\n                                    class=\"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500\"\n                                    v-model=\"form.selCollections\">\n                                    <option value=\"\">Escolha um Item...</option>\n                                    <template v-for=\"obj in collections\">\n                                        <option :value=\"obj.id\">{{ obj.name }}</option>\n                                    </template>\n                                </select>\n                            </div>\n\n                            <div id=\"optCourses\" class=\"relative z-0 w-full mb-4 group hide\">\n                                <InputLabel :value=\"translate('Curso:')\"\n                                    class=\"block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400\" />\n                                <select\n                                    class=\"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500\"\n                                    v-model=\"form.selCourses\">\n                                    <option value=\"\">Escolha um Item...</option>\n                                    <template v-for=\"obj in courses\">\n                                        <option :value=\"obj.id\">{{ obj.name }}</option>\n                                    </template>\n                                </select>\n                            </div>\n\n                            <div id=\"optPublicationYear\" class=\"relative z-0 w-full mb-4 group hide\">\n                                <InputLabel :value=\"translate('Ano de publicação:')\"\n                                    class=\"block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400\" />\n                                <input type=\"text\" id=\"ano_publicacao\" minlength=\"4\" maxlength=\"4\"\n                                    onkeypress=\"return event.charCode >= 48 && event.charCode <= 57\"\n                                    v-model=\"form.selPublicationYear\"\n                                    class=\"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500\" />\n                            </div>\n\n                        </div>\n                    </fieldset>\n                </div>\n            </div>\n\n            <div class=\"mx-auto max-w-7xl px-4 mb-3\">\n                <ResultLayout :data.sync=\"data\" :lang=\"lang\" :canLogin=\"canLogin\" :courses=\"courses\"\n                    :collections=\"collections\" :fields=\"fields\">\n                </ResultLayout>\n                <Modal :reloadPage=\"false\">\n                    <template v-slot:content>\n                        <div class=\"sm:flex sm:items-start\">\n                            <div\n                                class=\"mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10\">\n                                <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\"\n                                    stroke=\"currentColor\" class=\"w-6 h-6\">\n                                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                                        d=\"M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z\" />\n                                </svg>\n                            </div>\n                            <DialogTitle as=\"h3\"\n                                class=\"mt-2 px-2 text-lg font-medium leading-6 text-gray-900 dark:text-white\">\n                                Resultados</DialogTitle>\n                        </div>\n                        <div class=\"mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left\">\n                            <div class=\"mt-2\">\n                                <CrudLayout>\n                                    <ReadList :fields=\"fields\" :lang=\"lang\"></ReadList>\n                                </CrudLayout>\n                            </div>\n                        </div>\n                    </template>\n                </Modal>\n            </div>\n        </div>\n        <div class=\"mb-9\"></div>\n        <Footer />\n    </WelcomeLayout>\n</template>\n\n<style>\n.hide {\n    display: none;\n}\n</style>"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.hide {\n    display: none;\n}", "",{"version":3,"sources":["webpack://./resources/js/Pages/Welcome.vue"],"names":[],"mappings":";AAkPA;IACI,aAAa;AACjB","sourcesContent":["<script setup>\nimport { ref, onMounted } from 'vue';\nimport { Head, useForm } from '@inertiajs/inertia-vue3';\nimport { DialogTitle } from \"@headlessui/vue\";\nimport CrudLayout from \"@/Layouts/CrudLayout.vue\";\nimport ReadList from \"@/Components/ReadList.vue\";\nimport Checkbox from '@/Components/Checkbox.vue';\nimport InputLabel from '@/Components/InputLabel.vue';\nimport WelcomeLayout from \"@/Layouts/WelcomeLayout.vue\";\nimport ResultLayout from \"@/Layouts/WelcomeResultLayout.vue\";\nimport Modal from \"@/Components/Modal.vue\";\nimport Footer from \"@/Components/Footer.vue\";\n\nconst props = defineProps({\n    fields: Object,\n    lang: Object,\n    canLogin: Boolean,\n    canRegister: Boolean,\n    laravelVersion: String,\n    phpVersion: String,\n    courses: Object,\n    collections: Object,\n    data: {\n        type: Object,\n        default: () => ({}),\n    }\n\n});\n\nlet form = useForm({\n    'canLogin': props.canLogin,\n    'courses': props.courses,\n    'collections': props.collections,\n    'lang': props.lang,\n    'fields': props.fields,\n    'q': '',\n    'chkQuery': [],\n    'selCourses': '',\n    'selCollections': '',\n    'selPublicationYear': ''\n});\n\nconst emit = defineEmits(['update:data']);\n\nconst submit = () => {\n    form.post(route('welcome'), {\n        onSuccess: (res) => {\n            emit(\"update:data\", res.props.data);\n        }\n    });\n};\n\nconst reset = () => {\n    window.location.reload();\n}\n\nconst q = ref(null);\nconst clearInputQ = () => {\n    form.q = \"\";\n    q.value.value = \"\";\n    q.value.focus();\n}\n\nconst optionsQuery = [\n    { id: 'collections', label: 'Collections', checked: false, disabled: false },\n    { id: 'courses', label: 'Courses', checked: false, disabled: false },\n    { id: 'publicationYear', label: 'Publication Year', checked: false, disabled: false }\n];\n\nonMounted(() => {\n    optionsQuery.map((oq) => {\n        if (oq.checked)\n            form.chkQuery.push(oq.id)\n    });\n});\n\nconst optCheckedShowHide = () => {\n    let optionsChecked = Object.values(form.chkQuery);\n    const allOptions = optionsQuery.map((oq) => oq.id);\n\n    allOptions.forEach((chk) => {\n        if (document.getElementById(\"opt\" + chk[0].toUpperCase() + chk.slice(1))) {\n            if (optionsChecked.includes(chk)) {\n                document.getElementById(\"opt\" + chk[0].toUpperCase() + chk.slice(1)).classList.remove('hide');\n            } else {\n                document.getElementById(\"opt\" + chk[0].toUpperCase() + chk.slice(1)).classList.add('hide');\n                form['sel' + chk[0].toUpperCase() + chk.slice(1)] = '';\n            }\n        }\n    });\n}\nconst lastYear = ref(new Date().getFullYear());\n</script>\n\n<template>\n    <Head title=\"Acervo Galileu\" />\n    <WelcomeLayout :lang=\"lang\" :canLogin=\"canLogin\">\n        <div class=\"py-12 sm:py-8\">\n            <div class=\"mx-auto max-w-7xl px-4 mb-3\">\n                <div class=\"grid grid-cols-1 md:grid-cols-6 gap-4\">\n                    <div class=\"col-start-1 col-span-6 md:col-start-2 md:col-span-3\">\n                        <div class=\"relative w-full\">\n                            <input type=\"text\" id=\"floating_outlined\" v-model=\"form.q\" ref=\"q\"\n                                class=\"block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-200 focus:outline-none focus:ring-0 focus:border-blue-200 peer\"\n                                placeholder=\" \" autofocus />\n                            <button type=\"button\" class=\"flex absolute inset-y-0 right-0 items-center pr-3\" title=\"Limpar\"\n                                @click=\"clearInputQ\">\n                                <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\"\n                                    stroke=\"currentColor\"\n                                    class=\"w-6 h-6 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white\">\n                                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\" />\n                                </svg>\n                            </button>\n                            <label for=\"floating_outlined\" class=\"absolute text-xs md:text-lg lg:text-lg text-gray-500 dark:text-gray-400 duration-300 \n                transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 \n                peer-focus:px-2 peer-focus:text-blue-900 dark:peer-focus:text-blue-200 peer-placeholder-shown:scale-100 \n                peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 \n                peer-focus:-translate-y-4 left-1\">\n                                Pesquisar por: Autor, Orientador, Título ou Subtítulo\n                            </label>\n                        </div>\n                    </div>\n                    <div class=\"col-span-2\">\n                        <button type=\"button\" @click=\"submit\"\n                            class=\"relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800\">\n                            <span\n                                class=\"relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0\">\n                                Pesquisar\n                            </span>\n                        </button>\n                        <button @click=\"reset\"\n                            class=\"relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400\">\n                            <span\n                                class=\"relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0\">\n                                Limpar\n                            </span>\n                        </button>\n                    </div>\n                </div>\n\n                <div class=\"mx-auto max-w-7xl px-4 mb-3\">\n                    <fieldset class=\"border border-gray-500 text-gray-500 dark:text-gray-400 text-sm rounded-lg p-3\">\n                        <legend>&nbsp;Mais Opções de Consulta&nbsp;</legend>\n\n                        <div class=\"grid md:grid-cols-1 md:gap-6\">\n                            <div class=\"flex\">\n                                <template v-for=\"obj in optionsQuery\">\n                                    <label class=\"flex items-center mr-4\">\n                                        <Checkbox v-model:checked=\"form.chkQuery\" :disabled=\"obj.disabled\" :value=\"obj.id\"\n                                            @change=\"optCheckedShowHide()\"\n                                            class=\"w-4 h-4 rounded focus:ring-2 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600\"\n                                            :class=\"obj.disabled\n                                                ? 'text-blue-300 cursor-not-allowed'\n                                                : 'text-blue-600'\" />\n                                        <span class=\"ml-2 text-sm font-medium text-gray-900 dark:text-gray-300\">{{\n                                            translate(obj.label)\n                                        }}</span>\n                                    </label>\n                                </template>\n\n                            </div>\n                        </div>\n\n                        <div class=\"grid md:grid-cols-3 md:gap-6 mt-2\">\n\n                            <div id=\"optCollections\" class=\"relative z-0 w-full mb-4 group hide\">\n                                <InputLabel :value=\"translate('Tipo:')\"\n                                    class=\"block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400\" />\n                                <select\n                                    class=\"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500\"\n                                    v-model=\"form.selCollections\">\n                                    <option value=\"\">Escolha um Item...</option>\n                                    <template v-for=\"obj in collections\">\n                                        <option :value=\"obj.id\">{{ obj.name }}</option>\n                                    </template>\n                                </select>\n                            </div>\n\n                            <div id=\"optCourses\" class=\"relative z-0 w-full mb-4 group hide\">\n                                <InputLabel :value=\"translate('Curso:')\"\n                                    class=\"block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400\" />\n                                <select\n                                    class=\"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500\"\n                                    v-model=\"form.selCourses\">\n                                    <option value=\"\">Escolha um Item...</option>\n                                    <template v-for=\"obj in courses\">\n                                        <option :value=\"obj.id\">{{ obj.name }}</option>\n                                    </template>\n                                </select>\n                            </div>\n\n                            <div id=\"optPublicationYear\" class=\"relative z-0 w-full mb-4 group hide\">\n                                <InputLabel :value=\"translate('Ano de publicação:')\"\n                                    class=\"block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400\" />\n                                <input type=\"text\" id=\"ano_publicacao\" minlength=\"4\" maxlength=\"4\"\n                                    :placeholder=\"'Ex:. ' + lastYear\"\n                                    onkeypress=\"return event.charCode >= 48 && event.charCode <= 57\"\n                                    v-model=\"form.selPublicationYear\"\n                                    class=\"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500\" />\n                            </div>\n\n                        </div>\n                    </fieldset>\n                </div>\n            </div>\n\n            <div class=\"mx-auto max-w-7xl px-4 mb-3\">\n                <ResultLayout :data.sync=\"data\" :lang=\"lang\" :canLogin=\"canLogin\" :courses=\"courses\"\n                    :collections=\"collections\" :fields=\"fields\">\n                </ResultLayout>\n                <Modal :reloadPage=\"false\">\n                    <template v-slot:content>\n                        <div class=\"sm:flex sm:items-start\">\n                            <div\n                                class=\"mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10\">\n                                <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\"\n                                    stroke=\"currentColor\" class=\"w-6 h-6\">\n                                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\"\n                                        d=\"M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z\" />\n                                </svg>\n                            </div>\n                            <DialogTitle as=\"h3\"\n                                class=\"mt-2 px-2 text-lg font-medium leading-6 text-gray-900 dark:text-white\">\n                                Resultados</DialogTitle>\n                        </div>\n                        <div class=\"mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left\">\n                            <div class=\"mt-2\">\n                                <CrudLayout>\n                                    <ReadList :fields=\"fields\" :lang=\"lang\"></ReadList>\n                                </CrudLayout>\n                            </div>\n                        </div>\n                    </template>\n                </Modal>\n            </div>\n        </div>\n        <div class=\"mb-9\"></div>\n        <Footer />\n    </WelcomeLayout>\n</template>\n\n<style>\n.hide {\n    display: none;\n}</style>"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -57053,8 +57056,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _vue_devtools_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/devtools-api */ "./node_modules/@vue/devtools-api/lib/esm/index.js");
 /*!
- * vuex v4.1.0
- * (c) 2022 Evan You
+ * vuex v4.0.2
+ * (c) 2021 Evan You
  * @license MIT
  */
 
@@ -57171,7 +57174,6 @@ function resetStore (store, hot) {
 
 function resetStoreState (store, state, hot) {
   var oldState = store._state;
-  var oldScope = store._scope;
 
   // bind store public getters
   store.getters = {};
@@ -57179,33 +57181,22 @@ function resetStoreState (store, state, hot) {
   store._makeLocalGettersCache = Object.create(null);
   var wrappedGetters = store._wrappedGetters;
   var computedObj = {};
-  var computedCache = {};
-
-  // create a new effect scope and create computed object inside it to avoid
-  // getters (computed) getting destroyed on component unmount.
-  var scope = (0,vue__WEBPACK_IMPORTED_MODULE_0__.effectScope)(true);
-
-  scope.run(function () {
-    forEachValue(wrappedGetters, function (fn, key) {
-      // use computed to leverage its lazy-caching mechanism
-      // direct inline function use will lead to closure preserving oldState.
-      // using partial to return function with only arguments preserved in closure environment.
-      computedObj[key] = partial(fn, store);
-      computedCache[key] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () { return computedObj[key](); });
-      Object.defineProperty(store.getters, key, {
-        get: function () { return computedCache[key].value; },
-        enumerable: true // for local getters
-      });
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    // direct inline function use will lead to closure preserving oldState.
+    // using partial to return function with only arguments preserved in closure environment.
+    computedObj[key] = partial(fn, store);
+    Object.defineProperty(store.getters, key, {
+      // TODO: use `computed` when it's possible. at the moment we can't due to
+      // https://github.com/vuejs/vuex/pull/1883
+      get: function () { return computedObj[key](); },
+      enumerable: true // for local getters
     });
   });
 
   store._state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
     data: state
   });
-
-  // register the newly created effect scope to the store so that we can
-  // dispose the effects when this method runs again in the future.
-  store._scope = scope;
 
   // enable strict mode for new state
   if (store.strict) {
@@ -57220,11 +57211,6 @@ function resetStoreState (store, state, hot) {
         oldState.data = null;
       });
     }
-  }
-
-  // dispose previously registered effect scope if there is one.
-  if (oldScope) {
-    oldScope.stop();
   }
 }
 
@@ -57974,12 +57960,6 @@ var Store = function Store (options) {
   this._modulesNamespaceMap = Object.create(null);
   this._subscribers = [];
   this._makeLocalGettersCache = Object.create(null);
-
-  // EffectScope instance. when registering new getters, we wrap them inside
-  // EffectScope so that getters (computed) would not be destroyed on
-  // component unmount.
-  this._scope = null;
-
   this._devtools = devtools;
 
   // bind commit and dispatch to self
@@ -58522,7 +58502,7 @@ function pad (num, maxLength) {
 }
 
 var index = {
-  version: '4.1.0',
+  version: '4.0.2',
   Store: Store,
   storeKey: storeKey,
   createStore: createStore,

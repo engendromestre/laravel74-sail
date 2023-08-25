@@ -31,6 +31,6 @@
     "dependencies": {
         "@headlessui/vue": "^1.7.16",
         "@heroicons/vue": "^2.0.18",
-        "vuex": "^4.1.0"
+        "vuex": "^4.0.2"
     }
 }
