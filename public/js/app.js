@@ -57050,8 +57050,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _vue_devtools_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/devtools-api */ "./node_modules/@vue/devtools-api/lib/esm/index.js");
 /*!
- * vuex v4.1.0
- * (c) 2022 Evan You
+ * vuex v4.0.2
+ * (c) 2021 Evan You
  * @license MIT
  */
 
@@ -57168,7 +57168,6 @@ function resetStore (store, hot) {
 
 function resetStoreState (store, state, hot) {
   var oldState = store._state;
-  var oldScope = store._scope;
 
   // bind store public getters
   store.getters = {};
@@ -57176,33 +57175,22 @@ function resetStoreState (store, state, hot) {
   store._makeLocalGettersCache = Object.create(null);
   var wrappedGetters = store._wrappedGetters;
   var computedObj = {};
-  var computedCache = {};
-
-  // create a new effect scope and create computed object inside it to avoid
-  // getters (computed) getting destroyed on component unmount.
-  var scope = (0,vue__WEBPACK_IMPORTED_MODULE_0__.effectScope)(true);
-
-  scope.run(function () {
-    forEachValue(wrappedGetters, function (fn, key) {
-      // use computed to leverage its lazy-caching mechanism
-      // direct inline function use will lead to closure preserving oldState.
-      // using partial to return function with only arguments preserved in closure environment.
-      computedObj[key] = partial(fn, store);
-      computedCache[key] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () { return computedObj[key](); });
-      Object.defineProperty(store.getters, key, {
-        get: function () { return computedCache[key].value; },
-        enumerable: true // for local getters
-      });
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    // direct inline function use will lead to closure preserving oldState.
+    // using partial to return function with only arguments preserved in closure environment.
+    computedObj[key] = partial(fn, store);
+    Object.defineProperty(store.getters, key, {
+      // TODO: use `computed` when it's possible. at the moment we can't due to
+      // https://github.com/vuejs/vuex/pull/1883
+      get: function () { return computedObj[key](); },
+      enumerable: true // for local getters
     });
   });
 
   store._state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
     data: state
   });
-
-  // register the newly created effect scope to the store so that we can
-  // dispose the effects when this method runs again in the future.
-  store._scope = scope;
 
   // enable strict mode for new state
   if (store.strict) {
@@ -57217,11 +57205,6 @@ function resetStoreState (store, state, hot) {
         oldState.data = null;
       });
     }
-  }
-
-  // dispose previously registered effect scope if there is one.
-  if (oldScope) {
-    oldScope.stop();
   }
 }
 
@@ -57971,12 +57954,6 @@ var Store = function Store (options) {
   this._modulesNamespaceMap = Object.create(null);
   this._subscribers = [];
   this._makeLocalGettersCache = Object.create(null);
-
-  // EffectScope instance. when registering new getters, we wrap them inside
-  // EffectScope so that getters (computed) would not be destroyed on
-  // component unmount.
-  this._scope = null;
-
   this._devtools = devtools;
 
   // bind commit and dispatch to self
@@ -58519,7 +58496,7 @@ function pad (num, maxLength) {
 }
 
 var index = {
-  version: '4.1.0',
+  version: '4.0.2',
   Store: Store,
   storeKey: storeKey,
   createStore: createStore,
